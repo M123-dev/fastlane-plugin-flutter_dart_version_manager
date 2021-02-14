@@ -20,7 +20,6 @@ module Fastlane
           raise "newVersion must not be null"
         end
 
-
         # Processing string
         version_to_set = "version: "
         version_to_set.concat(version_name)
@@ -29,21 +28,19 @@ module Fastlane
           version_to_set.concat(version_code)
         end
 
-
         # Read data
         lines = IO.readlines(path).map do |line|
-          if (line.include? "version:")
-              version_to_set
+          if line.include?("version:")
+            version_to_set
           else
-              line
+            line
           end
         end
 
         # Write changes
         File.open(path, 'w') do |file|
-          file.puts lines
+          file.puts(lines)
         end
-
 
       end
 
@@ -66,28 +63,25 @@ module Fastlane
 
       def self.available_options
         [
-          FastlaneCore::ConfigItem.new(
-                                      key: :version_name,
-                                      env_name: "version_name", 
-                                      description: 'The new version to be set "{major}.{minor}.{patch}"', 
-                                      is_string: true, 
+          FastlaneCore::ConfigItem.new(key: :version_name,
+                                      env_name: "version_name",
+                                      description: 'The new version to be set "{major}.{minor}.{patch}"',
+                                      is_string: true,
                                       verify_block: proc do |value|
-                                        UI.user_error!('No version given, provide using `newVersion: "the version"`') unless (value and not value.empty?)
+                                        UI.user_error!('No version given, provide using `newVersion: "the version"`') unless value and !value.empty?
                                       end),
-          FastlaneCore::ConfigItem.new(
-                                      key: :version_code,
-                                      env_name: "version_code", 
-                                      description: "The new build version", 
+          FastlaneCore::ConfigItem.new(key: :version_code,
+                                      env_name: "version_code",
+                                      description: "The new build version",
                                       optional: true,
                                       verify_block: proc do |value|
-                                          UI.user_error!("No version code given, pass using `version_code: 'your version_code'`") unless (value and not value.empty?)
+                                          UI.user_error!("No version code given, pass using `version_code: 'your version_code'`") unless value and !value.empty?
                                       end),
-          FastlaneCore::ConfigItem.new(
-                                      key: :path_to_yaml,
+          FastlaneCore::ConfigItem.new(key: :path_to_yaml,
                                       env_name: "path_to_yaml",
                                       description: "The path to the pubspec.yaml file",
-                                      is_string: true, 
-                                      default_value: "../pubspec.yaml") 
+                                      is_string: true,
+                                      default_value: "../pubspec.yaml")
         ]
       end
 
