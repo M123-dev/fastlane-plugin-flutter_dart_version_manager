@@ -1,9 +1,9 @@
 lane :set_version do
   begin
-      flutter_set_version(
-        path_to_yaml: "../pubspec.yaml",
-        version_name: "69.69.69",
-        version_code: "5",
-      )
+    flutter_set_version(
+      path_to_yaml: "../pubspec.yaml",
+      version_name: "69.69.69",
+      version_code: "5"
+    )
   end
 end
