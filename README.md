@@ -1,0 +1,1 @@
+# fastlane-plugin-flutter_dart_version_manager
