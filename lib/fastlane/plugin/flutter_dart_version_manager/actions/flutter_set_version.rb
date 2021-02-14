@@ -6,39 +6,37 @@ module Fastlane
     class FlutterSetVersionAction < Action
       def self.run(params)
         # fastlane will take care of reading in the parameter and fetching the environment variable:
-        UI.message "Started FlutterVersionManager"
+        UI.message("Started FlutterVersionManager")
 
-        versionName = params[:version_name]
-        versionCode = params[:version_code]
+        version_name = params[:version_name]
+        version_code = params[:version_code]
         path = params[:path_to_yaml]
 
         # Checking values
-        if !File.exists?(path)
-            raise 'File not found at path: "' + path + '" example: ../myFolder/pubspec.yaml'
+        unless File.exist?(path)
+          raise 'File not found at path: "' + path + '" example: ../myFolder/pubspec.yaml'
         end
-        unless !versionName.to_s.strip.empty?
-            raise "newVersion must not be null"
-        end
-
-
-        #Processing string
-        versionToSet = "version: "
-        unless versionCode.to_s.strip.empty?
-            versionToSet.concat(versionName)
-            versionToSet.concat('+')
-            versionToSet.concat(versionCode)
-        else
-            versionToSet.concat(versionName)
+        if version_name.to_s.strip.empty?
+          raise "newVersion must not be null"
         end
 
 
-        #Read data
+        # Processing string
+        version_to_set = "version: "
+        version_to_set.concat(version_name)
+        unless version_code.to_s.strip.empty?
+          version_to_set.concat('+')
+          version_to_set.concat(version_code)
+        end
+
+
+        # Read data
         lines = IO.readlines(path).map do |line|
-        if (line.include? "version:")
-            versionToSet
-        else
-            line
-        end
+          if (line.include? "version:")
+              version_to_set
+          else
+              line
+          end
         end
 
         # Write changes
