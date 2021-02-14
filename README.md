@@ -4,36 +4,36 @@
 
 ## Getting Started
 
-This project is a [_fastlane_](https://github.com/fastlane/fastlane) plugin. To get started with `fastlane-plugin-flutter_dart_version_manager`, add it to your project by running:
+This project is a [_fastlane_](https://github.com/fastlane/fastlane) plugin. Add it to your project by running:
 
 ```bash
 fastlane add_plugin flutter_dart_version_manager
 ```
 
-## About flutter_dart_version_manager
+## Commands:
 
-A version manager for flutter
 
-**Note to author:** Add a more detailed description about this plugin here. If your plugin contains multiple actions, make sure to mention them here.
+### 
+
+### flutter_set_version
+
+```bash
+flutter_set_version(
+    path_to_yaml: "../pubspec.yaml",
+    version_name: "1.1.9",
+    version_code: "5", #optional
+)
+```
+
+
+
 
 ## Example
 
-Check out the [example `Fastfile`](fastlane/Fastfile) to see how to use this plugin. Try it by cloning the repo, running `fastlane install_plugins` and `bundle exec fastlane test`.
+Check out the [example Fastfile](fastlane/Fastfile) to see how to use this plugin. 
+Try it by cloning the repo, running `fastlane install_plugins` and `bundle exec fastlane test`.
 
-**Note to author:** Please set up a sample project to make it easy for users to explore what your plugin does. Provide everything that is necessary to try out the plugin in this project (including a sample Xcode/Android project if necessary)
 
-## Run tests for this plugin
-
-To run both the tests, and code style validation, run
-
-```
-rake
-```
-
-To automatically fix many of the styling issues, use
-```
-rubocop -a
-```
 
 ## Issues and Feedback
 
