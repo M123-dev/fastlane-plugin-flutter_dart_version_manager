@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.1.5](https://www.github.com/M123-dev/fastlane-plugin-flutter_dart_version_manager/compare/v0.1.4...v0.1.5) (2021-11-08)
+
+
+### Bug Fixes
+
+* updated release-process ([17f697d](https://www.github.com/M123-dev/fastlane-plugin-flutter_dart_version_manager/commit/17f697d418ee86fc790b76bcde857b7d52ee3008))
+
 ### [0.1.4](https://www.github.com/M123-dev/fastlane-plugin-flutter_dart_version_manager/compare/v0.1.3...v0.1.4) (2021-11-08)
 
 
