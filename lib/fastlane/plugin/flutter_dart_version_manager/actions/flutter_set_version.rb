@@ -14,7 +14,7 @@ module Fastlane
 
         # Checking values
         unless File.exist?(path)
-          raise 'File not found at path: "' + path + '" example: ../myFolder/pubspec.yaml'
+          raise "File not found at path: \"#{path}\" example: ../myFolder/pubspec.yaml"
         end
         if version_name.to_s.strip.empty?
           raise "newVersion must not be null"
@@ -62,6 +62,7 @@ module Fastlane
 
       def self.available_options
         [
+          # rubocop: disable Require/MissingRequireStatement
           FastlaneCore::ConfigItem.new(key: :version_name,
                                       env_name: "version_name",
                                       description: 'The new version to be set "{major}.{minor}.{patch}"',
@@ -81,6 +82,7 @@ module Fastlane
                                       description: "The path to the pubspec.yaml file",
                                       is_string: true,
                                       default_value: "../pubspec.yaml")
+          # rubocop:enable Require/MissingRequireStatement
         ]
       end
 
