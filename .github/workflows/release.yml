@@ -9,6 +9,8 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+
       - uses: GoogleCloudPlatform/release-please-action@v2
         id: release
         with:
@@ -16,9 +18,6 @@ jobs:
           package-name: fastlane-plugin-flutter_dart_version_manager
           version-file: 'lib\fastlane\plugin\flutter_dart_version_manager\version.rb'
 
-      # Checkout code if release was created
-      - uses: actions/checkout@v2
-        if: ${{ steps.release.outputs.release_created }}
 
       - uses: ruby/setup-ruby@v1
         with:
