@@ -9,16 +9,16 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
       - name: release-please-action
         uses: google-github-actions/release-please-action@v2.32.0
         id: release
         with:
           release-type: ruby
           package-name: fastlane-plugin-flutter_dart_version_manager
-          version-file: 'lib\fastlane\plugin\flutter_dart_version_manager\version.rb'
+          version-file: "lib/fastlane/plugin/flutter_dart_version_manager/version.rb"
 
+      - uses: actions/checkout@v2
+        if: ${{ steps.release.outputs.release_created }}
 
       - uses: ruby/setup-ruby@v1
         with:
@@ -28,15 +28,8 @@ jobs:
       - run: bundle install
         if: ${{ steps.release.outputs.release_created }}
       
-      - name: publish gem
-        run: |
-          mkdir -p $HOME/.gem
-          touch $HOME/.gem/credentials
-          chmod 0600 $HOME/.gem/credentials
-          printf -- "---\n:rubygems_api_key: ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
-          gem build *.gemspec
-          gem push *.gem
-        env:
-          GEM_HOST_API_KEY: "${{secrets.RUBYGEMS_API_KEY}}"
-        if: ${{ steps.release.outputs.release_created }}
+      - name: Publish gem
+        uses: dawidd6/action-publish-gem@v1.2.0
+        with:
+          api_key: ${{secrets.RUBYGEMS_API_KEY}}
 
