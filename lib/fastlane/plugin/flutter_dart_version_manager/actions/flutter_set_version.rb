@@ -31,10 +31,10 @@ module Fastlane
 
         # Read data
         # Additional check for compatibility with pub.dev package "version" and ignoring comments
-        alreadySet = false
+        already_set = false
         lines = IO.readlines(path).map do |line|
-          if (line.include?("version:") && !alreadySet && !line.start_with?("#"))
-            alreadySet = true
+          if line.include?("version:") && !already_set && !line.start_with?("#")
+            already_set = true
             version_to_set
           else
             line
