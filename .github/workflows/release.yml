@@ -3,21 +3,14 @@ name: Publish Gem
 on:
   push:
     branches:
-      - "release/*"
-    #tags:
-    #  - v*
+      - main
+
 jobs:
-  build:
+  release-please:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Publish gem
-        uses: dawidd6/action-publish-gem@v1
+      - uses: GoogleCloudPlatform/release-please-action@v2
         with:
-          # Optional, will publish to RubyGems if specified
-          api_key: ${{secrets.RUBYGEMS_API_KEY}}
-          # Optional, will publish to GitHub Packages if specified
-          github_token: ${{secrets.GH_PACKAGES_TOKEN}}
+          release-type: ruby
+          package-name: fastlane-plugin-flutter_dart_version_manager
+          version-file: 'lib\fastlane\plugin\flutter_dart_version_manager\version.rb'
