@@ -1,4 +1,23 @@
 ---
+require:
+- rubocop/require_tools
+- rubocop-performance
+AllCops:
+  TargetRubyVersion: 2.5
+  NewCops: enable
+  Include:
+  - "**/*.rb"
+  - "**/*file"
+  - "**/*.gemspec"
+  - "*/lib/assets/*Template"
+  - "*/lib/assets/*TemplateAndroid"
+  Exclude:
+  - "**/lib/assets/custom_action_template.rb"
+  - "./vendor/**/*"
+  - "**/lib/assets/DefaultFastfileTemplate"
+  - "**/lib/assets/MatchfileTemplate"
+  - "**/spec/fixtures/broken_files/broken_file.rb"
+  - "**/*.provisionprofile"
 Style/MultipleComparison:
   Enabled: false
 Style/PercentLiteralDelimiters:
@@ -19,19 +38,17 @@ Metrics/BlockLength:
   Enabled: false
 Metrics/ModuleLength:
   Enabled: false
-Style/VariableNumber:
+Naming/VariableNumber:
   Enabled: false
-Style/MethodMissing:
+Style/MissingRespondToMissing:
   Enabled: false
-MultilineBlockChain:
+Style/MultilineBlockChain:
   Enabled: false
 Style/NumericLiteralPrefix:
   Enabled: false
 Style/TernaryParentheses:
   Enabled: false
 Style/EmptyMethod:
-  Enabled: false
-Style/BracesAroundHashParameters:
   Enabled: false
 Lint/UselessAssignment:
   Exclude:
@@ -47,11 +64,11 @@ Require/MissingRequireStatement:
   - rakelib/**/*
   - "**/*.rake"
   - "**/Rakefile"
-  - fastlane/**/*
+  - "lib/**"
   - supply/**/*
-Layout/IndentHash:
+Layout/FirstHashElementIndentation:
   Enabled: false
-Layout/AlignHash:
+Layout/HashAlignment:
   Enabled: false
 Layout/DotPosition:
   Enabled: false
@@ -59,12 +76,12 @@ Style/DoubleNegation:
   Enabled: false
 Style/SymbolArray:
   Enabled: false
-Layout/IndentHeredoc:
+Layout/HeredocIndentation:
   Enabled: false
 Style/MixinGrouping:
   Exclude:
   - "**/spec/**/*"
-Lint/HandleExceptions:
+Lint/SuppressedException:
   Enabled: false
 Lint/UnusedBlockArgument:
   Enabled: false
@@ -95,12 +112,10 @@ Style/AndOr:
   EnforcedStyle: conditionals
 Metrics/ClassLength:
   Max: 320
-Metrics/LineLength:
+Layout/LineLength:
   Max: 370
 Metrics/ParameterLists:
   Max: 17
-Metrics/PerceivedComplexity:
-  Max: 18
 Style/GuardClause:
   Enabled: false
 Style/StringLiterals:
@@ -114,25 +129,14 @@ Lint/UnusedMethodArgument:
 Lint/ParenthesesAsGroupedExpression:
   Exclude:
   - "**/spec/**/*"
-Style/PredicateName:
+Naming/PredicateName:
   Enabled: false
 Style/PerlBackrefs:
   Enabled: false
 Layout/SpaceAroundOperators:
   Exclude:
   - "**/spec/actions_specs/xcodebuild_spec.rb"
-AllCops:
-  TargetRubyVersion: 2.4
-  Include:
-  - "*/lib/assets/*Template"
-  - "*/lib/assets/*TemplateAndroid"
-  Exclude:
-  - "**/lib/assets/custom_action_template.rb"
-  - "./vendor/**/*"
-  - "**/lib/assets/DefaultFastfileTemplate"
-  - "**/lib/assets/MatchfileTemplate"
-  - "**/spec/fixtures/broken_files/broken_file.rb"
-Style/FileName:
+Naming/FileName:
   Exclude:
   - "**/Dangerfile"
   - "**/Brewfile"
@@ -142,6 +146,7 @@ Style/FileName:
   - "**/Fastfile"
   - "**/Deliverfile"
   - "**/Snapfile"
+  - "**/Pluginfile"
   - "**/*.gemspec"
 Style/Documentation:
   Enabled: false
@@ -153,16 +158,6 @@ Style/IfInsideElse:
   Enabled: false
 Style/CollectionMethods:
   Enabled: false
-CrossPlatform/ForkUsage:
-  Exclude:
-  - "**/plugins/template/**/*"
-Lint/IsStringUsage:
-  Include:
-  - cert/**/*
-  - gym/**/*
-  - match/**/*
-  - screengrab/**/*
-  - supply/**/*
 Style/MethodCallWithArgsParentheses:
   Enabled: true
   IgnoredMethods:
@@ -187,3 +182,6 @@ Style/MethodCallWithArgsParentheses:
   - context
   - before
   - after
+Layout/EndOfLine:
+   Enabled: False
+  
