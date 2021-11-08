@@ -6,7 +6,7 @@ module Fastlane
     class FlutterSetVersionAction < Action
       def self.run(params)
         # fastlane will take care of reading in the parameter and fetching the environment variable:
-        UI.message("Started FlutterVersionManager")
+        UI.message("Started FlutterDartVersionManager")
 
         version_name = params[:version_name]
         version_code = params[:version_code]
@@ -23,14 +23,18 @@ module Fastlane
         # Processing string
         version_to_set = "version: "
         version_to_set.concat(version_name)
+        # Add version_code
         unless version_code.to_s.strip.empty?
           version_to_set.concat('+')
           version_to_set.concat(version_code)
         end
 
         # Read data
+        # Additional check for compatibility with pub.dev package "version" and ignoring comments
+        already_set = false
         lines = IO.readlines(path).map do |line|
-          if line.include?("version:")
+          if line.include?("version:") && !already_set && !line.start_with?("#")
+            already_set = true
             version_to_set
           else
             line
@@ -57,7 +61,6 @@ module Fastlane
 
       def self.details
         # Optional:
-        "Later"
       end
 
       def self.available_options
