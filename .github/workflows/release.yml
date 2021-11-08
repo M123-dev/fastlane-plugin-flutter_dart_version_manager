@@ -30,6 +30,8 @@ jobs:
       
       - name: Publish gem
         uses: dawidd6/action-publish-gem@v1.2.0
+        if: ${{ steps.release.outputs.release_created }}
         with:
           api_key: ${{secrets.RUBYGEMS_API_KEY}}
+
 
